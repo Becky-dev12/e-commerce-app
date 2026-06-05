@@ -17,7 +17,12 @@ const HomePage = () => {
       setLoading(true);
       setError(null);
       try {
-        const url = keyword ? `/api/products?keyword=${encodeURIComponent(keyword)}` : '/api/products';
+        // Uses the Vercel variable if live, or falls back to standard routing locally
+        const baseUrl = import.meta.env.VITE_API_URL || '';
+        const url = keyword 
+          ? `${baseUrl}/api/products?keyword=${encodeURIComponent(keyword)}` 
+          : `${baseUrl}/api/products`;
+
         const { data } = await axios.get(url);
         setProducts(data);
       } catch (err) {
