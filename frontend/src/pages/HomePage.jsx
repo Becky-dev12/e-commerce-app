@@ -17,8 +17,8 @@ const HomePage = () => {
       setLoading(true);
       setError(null);
       try {
-        // Uses the Vercel variable if live, or falls back to standard routing locally
-        const baseUrl = import.meta.env.VITE_API_URL || '';
+        // Explicitly pointing to your live Render backend URL
+        const baseUrl = 'https://e-commerce-app-6gef.onrender.com';
         const url = keyword 
           ? `${baseUrl}/api/products?keyword=${encodeURIComponent(keyword)}` 
           : `${baseUrl}/api/products`;
